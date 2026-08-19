@@ -42,7 +42,7 @@ The system surfaces two things:
 │                        Frontend                             │
 │   ┌──────────────────┐        ┌──────────────────────────┐  │
 │   │  Admin Portal    │        │     User Portal          │  │
-│   │  (frontend_admin)│        │     (frontend_user)      │  │
+│   │  (client/admin)  │        │     (client/user)        │  │
 │   │  Vite + React    │        │     Vite + React         │  │
 │   │  Pipeline mgmt   │        │  Signal Command Center   │  │
 │   │  Data viewer     │        │  Whale Scanner & Profiles│  │
@@ -125,7 +125,7 @@ Strategies run concurrently, scores are weighted and aggregated, and a consensus
 
 ```
 Verity/
-├── backend/
+├── server/
 │   ├── api/
 │   │   ├── app.py            # FastAPI application & middleware
 │   │   └── routes.py         # All REST API endpoints
@@ -154,22 +154,25 @@ Verity/
 │   ├── migrations/           # Database schema migrations
 │   ├── requirements.txt
 │   ├── render.yaml           # Render deployment manifest
+│   ├── run_api.py            # Entry point script
 │   └── .env.example          # Environment variable template
-├── frontend_admin/           # Admin portal (Vite + React)
-│   └── src/
-│       └── pages/
-│           ├── PipelinePage.jsx   # Upload, clean, ingest UI with live SSE progress
-│           └── DashboardPage.jsx  # Data viewer (investors, transactions, signals)
-├── frontend_user/            # User-facing portal (Vite + React)
-│   └── src/
-│       └── pages/
-│           ├── SignalCommandCenter.jsx
-│           ├── WhaleScanner.jsx
-│           ├── WhaleProfile.jsx
-│           ├── HerdRadar.jsx
-│           ├── AlphaTable.jsx
-│           ├── CommandCenter.jsx
-│           └── LiveActivity.jsx
+├── client/
+│   ├── admin/                # Admin portal (Vite + React)
+│   │   └── src/
+│   │       └── pages/
+│   │           ├── PipelinePage.jsx   # Upload, clean, ingest UI with live SSE progress
+│   │           └── DashboardPage.jsx  # Data viewer (investors, transactions, signals)
+│   └── user/                 # User-facing portal (Vite + React)
+│       └── src/
+│           └── pages/
+│               ├── SignalCommandCenter.jsx
+│               ├── WhaleScanner.jsx
+│               ├── WhaleProfile.jsx
+│               ├── HerdRadar.jsx
+│               ├── AlphaTable.jsx
+│               ├── CommandCenter.jsx
+│               ├── HomePage.jsx
+│               └── LiveActivity.jsx
 ├── CONCEPT.md                # The idea, philosophy, and reasoning behind Verity
 └── README.md
 ```
@@ -188,7 +191,7 @@ Verity/
 ### Backend Setup
 
 ```bash
-cd backend
+cd server
 
 # 1. Create a virtual environment and install dependencies
 python -m venv .venv
@@ -213,7 +216,7 @@ Both frontends follow the same steps. Run them in separate terminals.
 
 **Admin Portal**
 ```bash
-cd frontend_admin
+cd client/admin
 npm install
 npm run dev
 # Available at http://localhost:5173
@@ -221,7 +224,7 @@ npm run dev
 
 **User Portal**
 ```bash
-cd frontend_user
+cd client/user
 npm install
 npm run dev
 # Available at http://localhost:5174
@@ -233,7 +236,7 @@ npm run dev
 
 ## Environment Variables
 
-Copy `backend/.env.example` to `backend/.env` and fill in the values:
+Copy `server/.env.example` to `server/.env` and fill in the values:
 
 | Variable | Description |
 |---|---|
@@ -330,7 +333,7 @@ The full interactive API documentation is available at `/docs` (Swagger UI) when
 
 ### Backend → Render
 
-The `backend/render.yaml` file configures a Render web service:
+The `server/render.yaml` file configures a Render web service:
 
 ```yaml
 startCommand: gunicorn api.app:app --workers 1 --worker-class uvicorn.workers.UvicornWorker --bind 0.0.0.0:$PORT --timeout 600
@@ -340,7 +343,7 @@ Set all environment variables in the Render dashboard (they are listed in `rende
 
 ### Frontends → Vercel
 
-Both frontends include a `vercel.json` for SPA routing rewrites. Deploy by connecting the Vercel project to the respective subdirectory (`frontend_admin` or `frontend_user`) and setting `VITE_API_URL` in the Vercel environment settings.
+Both frontends include a `vercel.json` for SPA routing rewrites. Deploy by connecting the Vercel project to the respective subdirectory (`client/admin` or `client/user`) and setting `VITE_API_URL` in the Vercel environment settings.
 
 ---
 
