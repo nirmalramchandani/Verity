@@ -1,0 +1,92 @@
+:root {
+  --text: #d1d4dc;
+  --text-h: #f0f3fa;
+  --bg: #131722;
+  --border: #2a2e39;
+  --code-bg: #1e222d;
+  --accent: #2962ff;
+  --accent-bg: rgba(41, 98, 255, 0.12);
+  --accent-border: rgba(41, 98, 255, 0.4);
+  --social-bg: #1e222d;
+  --shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+
+  --sans: -apple-system, BlinkMacSystemFont, "Trebuchet MS", Roboto, "Helvetica Neue", sans-serif;
+  --heading: -apple-system, BlinkMacSystemFont, "Trebuchet MS", Roboto, "Helvetica Neue", sans-serif;
+  --mono: 'Roboto Mono', ui-monospace, Consolas, monospace;
+
+  font: 15px/150% var(--sans);
+  letter-spacing: 0.1px;
+  color-scheme: dark;
+  color: var(--text);
+  background: var(--bg);
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  @media (max-width: 1024px) {
+    font-size: 14px;
+  }
+}
+
+body {
+  margin: 0;
+}
+
+#root {
+  width: 1126px;
+  max-width: 100%;
+  margin: 0 auto;
+  padding: 16px;
+  text-align: center;
+  border-inline: 1px solid var(--border);
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  overflow-x: hidden;
+}
+
+h1,
+h2 {
+  font-family: var(--heading);
+  font-weight: 500;
+  color: var(--text-h);
+}
+
+h1 {
+  font-size: 56px;
+  letter-spacing: -1.68px;
+  margin: 32px 0;
+  @media (max-width: 1024px) {
+    font-size: 36px;
+    margin: 20px 0;
+  }
+}
+h2 {
+  font-size: 24px;
+  line-height: 118%;
+  letter-spacing: -0.24px;
+  margin: 0 0 8px;
+  @media (max-width: 1024px) {
+    font-size: 20px;
+  }
+}
+p {
+  margin: 0;
+}
+
+code,
+.counter {
+  font-family: var(--mono);
+  display: inline-flex;
+  border-radius: 4px;
+  color: var(--text-h);
+}
+
+code {
+  font-size: 15px;
+  line-height: 135%;
+  padding: 4px 8px;
+  background: var(--code-bg);
+}

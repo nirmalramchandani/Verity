@@ -1,0 +1,26 @@
+services:
+  - type: web
+    name: verity-backend
+    runtime: python
+    region: singapore  # closest to India
+    plan: free
+    rootDir: server
+    buildCommand: pip install -r requirements.txt
+    startCommand: gunicorn api.app:app --workers 1 --worker-class uvicorn.workers.UvicornWorker --bind 0.0.0.0:$PORT --timeout 600
+    envVars:
+      - key: PYTHON_VERSION
+        value: "3.13"
+      - key: MONGO_URI
+        sync: false
+      - key: POSTGRES_URL
+        sync: false
+      - key: ALERT_EMAIL_TO
+        sync: false
+      - key: ALERT_EMAIL_FROM
+        sync: false
+      - key: ALERT_EMAIL_PASSWORD
+        sync: false
+      - key: TELEGRAM_BOT_TOKEN
+        sync: false
+      - key: TELEGRAM_CHAT_ID
+        sync: false

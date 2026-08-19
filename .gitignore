@@ -1,0 +1,42 @@
+# Python-generated files
+__pycache__/
+*.py[oc]
+build/
+dist/
+wheels/
+*.egg-info
+
+# Virtual environments
+.venv
+
+# Environment variables (NEVER commit these)
+.env
+
+# Uploaded data files
+server/uploads/*.csv
+server/uploads/*.parquet
+
+# Node modules
+node_modules/
+
+# Build output
+client/admin/dist/
+client/user/dist/
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Gemini / Agent
+.gemini/
+.agent/
+
+# Pytest
+.pytest_cache/
+
+# Database Backups
+server/investor_snapshots_archive.csv

@@ -1,0 +1,57 @@
+export const STOCK_NAMES = {
+  'TECHM': 'Tech Mahindra Ltd',
+  'HCLTECH': 'HCL Technologies Ltd',
+  'WIPRO': 'Wipro Limited',
+  'INFY': 'Infosys Ltd',
+  'TCS': 'Tata Consultancy Services',
+  'RELIANCE': 'Reliance Industries Ltd',
+  'ADANIENT': 'Adani Enterprises Ltd',
+  'HDFCBANK': 'HDFC Bank Ltd',
+  'ICICIBANK': 'ICICI Bank Ltd',
+  'SBIN': 'State Bank of India',
+  'ITC': 'ITC Limited',
+  'LT': 'Larsen & Toubro Ltd',
+  'AXISBANK': 'Axis Bank Ltd',
+  'KOTAKBANK': 'Kotak Mahindra Bank',
+  'BHARTIARTL': 'Bharti Airtel Ltd',
+  'ASIANPAINT': 'Asian Paints Ltd',
+  'MARUTI': 'Maruti Suzuki India Ltd',
+  'TATAMOTORS': 'Tata Motors Ltd',
+  'TATAMTRDVR': 'Tata Motors DVR',
+  'SUNPHARMA': 'Sun Pharmaceutical Ind',
+  'HINDUNILVR': 'Hindustan Unilever Ltd',
+  'TITAN': 'Titan Company Ltd',
+  'BAJFINANCE': 'Bajaj Finance Ltd',
+  'ONGC': 'Oil & Natural Gas Corp',
+  'NTPC': 'NTPC Limited',
+  'POWERGRID': 'Power Grid Corp',
+  'M&M': 'Mahindra & Mahindra Ltd',
+  'ULTRACEMCO': 'UltraTech Cement Ltd',
+  'INDUSINDBK': 'IndusInd Bank Ltd',
+  'NESTLEIND': 'Nestle India Ltd',
+  'BAJAJFINSV': 'Bajaj Finserv Ltd',
+  'GRASIM': 'Grasim Industries Ltd',
+  'HINDALCO': 'Hindalco Industries Ltd',
+  'CIPLA': 'Cipla Ltd',
+  'EICHERMOT': 'Eicher Motors Ltd',
+  'DRREDDY': 'Dr Reddy\'s Laboratories',
+  'JSWSTEEL': 'JSW Steel Ltd',
+  'TATASTEEL': 'Tata Steel Ltd',
+  'BPCL': 'Bharat Petroleum Corp',
+  'BRITANNIA': 'Britannia Industries',
+  'SBILIFE': 'SBI Life Insurance',
+  'HDFCLIFE': 'HDFC Life Insurance',
+  'APOLLOHOSP': 'Apollo Hospitals',
+  'HEROMOTOCO': 'Hero MotoCorp Ltd',
+  'COALINDIA': 'Coal India Ltd',
+  'TATACONSUM': 'Tata Consumer Products',
+  'UPL': 'UPL Limited',
+  'RCOM': 'Reliance Communication'
+};
+
+export function getStockName(symbol) {
+  if (!symbol) return 'Unknown';
+  if (STOCK_NAMES[symbol]) return STOCK_NAMES[symbol];
+  // Fallback: convert SYMBOL to Title Case (e.g. PERSISTENT -> Persistent)
+  return symbol.charAt(0).toUpperCase() + symbol.slice(1).toLowerCase();
+}
